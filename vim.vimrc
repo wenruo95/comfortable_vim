@@ -23,6 +23,10 @@ Plugin 'scrooloose/syntastic'
 Plugin 'fatih/vim-go'
 Plugin 'Blackrush/vim-gocode'
 
+" xml
+Plugin 'othree/xml.vim'
+Plugin 'plasticboy/vim-markdown'
+
 "c/cpp
 Plugin 'vim-scripts/omnicppcomplete'
 Plugin 'junegunn/vim-easy-align'
@@ -63,7 +67,7 @@ set statusline=%F%*%=[L:%l/%L,C:%c][%p%%]
 
 "解决backspace无效问题
 set backspace=2
-"set backspace=indent,eol,start   " 插入模式下删除操作
+set backspace=indent,eol,start   " 插入模式下删除操作
 
 "设置行号
 set nu
@@ -295,11 +299,12 @@ let g:ycm_error_symbol='>>'
 " 警告标识符
 let g:ycm_warning_symbol='>*'
 " 不查询ultisnips提供的代码模板补全，如果需要，设置成1即可
-" let g:ycm_use_ultisnips_completer=0
+let g:ycm_use_ultisnips_completer=0
 
 let g:ycm_server_python_interpreter='/usr/local/bin/python3'
 "let g:ycm_add_preview_to_completeopt = 1
-let g:ycm_show_diagnostics_ui = 0
+" 是否显示语法检测警告
+let g:ycm_show_diagnostics_ui = 1 
 let g:ycm_server_log_level = 'info'
 let g:ycm_min_num_identifier_candidate_chars = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
@@ -340,7 +345,7 @@ map <F4> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " vim-go
 let g:go_version_warning = 0
 let g:go_fmt_autosave = 1
-"let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "goimports"
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1

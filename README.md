@@ -18,6 +18,11 @@
 ## 2. install ycm
 
 ```shell
+cp -r vim.vimrc ~/.vimrc
+cp -r ycm_extra_conf.py ~/.ycm_extra_conf.py
+```
+
+```shell
 cd ~/.vim/bundle/
 git clone git@github.com:ycm-core/YouCompleteMe.git
 git submodule update --init --recursive

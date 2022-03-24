@@ -46,7 +46,6 @@ Plugin 'aklt/plantuml-syntax'
 call vundle#end()
 filetype plugin indent on
 
-
 runtime! debian.vim
 "设置编码
 set encoding=utf-8
@@ -358,7 +357,7 @@ map <F10> :GoReferrers<CR>
 let g:python_host_prog = "/usr/bin/python3"
 
 " vim-fugitive
-nmap <F5> :Gblame<CR>
+nmap <F5> :Git blame<CR>
 
 " gocode
 nmap <F6> <C-x><C-o>

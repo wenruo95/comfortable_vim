@@ -7,10 +7,10 @@ export PATH=$MySQLROOT/bin:$PATH
 
 #export GOROOT=$(go1.18.10 env GOROOT)
 export GOROOT=/usr/local/go
-export GOPATH=/Users/bytedance/Workspace/Go
+export GOPATH=/Users/zemanzeng/Workspace/Go
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 #export GOPRIVATE=""
-export GOPROXY="https://goproxy.byted.org|https://goproxy.cn|direct"
+export GOPROXY="https://goproxy.cn|direct"
 export GOSUMDB="sum.golang.google.cn"
 
 alias gocode='cd $GOPATH/src/'

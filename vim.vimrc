@@ -6,7 +6,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'jlanzarotta/bufexplorer'
-Plugin 'vim-scripts/minibufexplorerpp'
+Plugin 'vim-scripts/minibufexpl.vim'
 Plugin 'ervandew/supertab'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'vim-scripts/winmanager'
@@ -22,10 +22,11 @@ Plugin 'scrooloose/syntastic'
 " go
 Plugin 'fatih/vim-go'
 Plugin 'Blackrush/vim-gocode'
+Plugin 'solarnz/thrift.vim'
 
 " xml
 Plugin 'othree/xml.vim'
-Plugin 'plasticboy/vim-markdown'
+"Plugin 'plasticboy/vim-markdown'
 
 "c/cpp
 Plugin 'vim-scripts/omnicppcomplete'
@@ -35,12 +36,17 @@ Plugin 'dense-analysis/ale'
 Plugin 'yggdroot/leaderf'
 
 " 配色方案
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'morhetz/gruvbox'
 Plugin 'KeitaNakamura/neodark.vim'
 Plugin 'crusoexia/vim-monokai'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'rakr/vim-one'
+Plugin 'mhartington/oceanic-next'
 
 " 其他插件
 Plugin 'aklt/plantuml-syntax'
+Plugin 'frazrepo/vim-rainbow'
 
 " 插件列表结束
 call vundle#end()
@@ -51,6 +57,9 @@ runtime! debian.vim
 set encoding=utf-8
 set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 set fileencodings=utf-8,ucs-bom,chinese
+
+"设置键盘复制
+"set clipboard=unnamed
 
 "语言设置
 set langmenu=zh_CN.UTF-8
@@ -85,7 +94,7 @@ set showcmd
 set showmode
 
 "代码折叠相关
-set foldmethod=syntax "用语法高亮来定义折叠
+"set foldmethod=syntax "用语法高亮来定义折叠
 set foldlevel=100   "启动vim时不要自动折叠代码
 set foldcolumn=0    "折叠栏宽度
 
@@ -108,9 +117,17 @@ set background=dark
 "set background=light
 
 "设置配色方案
+"colorscheme one
 "colorscheme neodark
 "colorscheme monokai
-colorscheme solarized
+colorscheme gruvbox "默认方案
+"colorscheme papercolor
+"colorscheme solarized
+
+"OceanicNext
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+"colorscheme OceanicNext
 
 hi Comment ctermfg=red 
 
@@ -151,6 +168,9 @@ map <F7> :make<CR>
 "设置默认shell
 set shell=bash
 
+"设置匹配内存(单位Kbyte) 1G
+set maxmempattern=1000000
+
 "设置VIM记录的历史数
 set history=100
 
@@ -190,7 +210,7 @@ set tags+=~/.vim/tags/systags
 map <F4> :!ctags -R .<CR> 
 
 " supertab
-let g:SuperTabDefaultCompletionType="context"
+"let g:SuperTabDefaultCompletionType="context"
 "let g:SuperTabRetainCompletionType=2
 "let g:SuperTabDefaultCompletionType="<C-X><C-O>"
 
@@ -292,7 +312,7 @@ let g:ycm_auto_trigger=1
 " 在注释中也可以补全
 let g:ycm_complete_in_comments=1
 " 输入第一个字符就开始补全
-let g:ycm_min_num_of_chars_for_completion=1
+let g:ycm_min_num_of_chars_for_completion=3
 " 错误标识符
 let g:ycm_error_symbol='>>'
 " 警告标识符
@@ -337,6 +357,8 @@ let g:ycm_language_server =
   \     'project_root_files': [ 'project.godot' ]
   \    }
   \ ]
+" 大文件处理
+let g:ycm_disable_for_files_larger_than_kb=409600
 map <F2> :YcmCompleter GoToDefinition<CR>
 map <F3> :YcmCompleter GoToDeclaration<CR>
 map <F4> :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -368,7 +390,8 @@ map <F8> :TagbarToggle<CR>
 "map <F3> :call SetTitle()<CR>
 
 " comment
-autocmd BufNewFile *.[ch],*.hpp,*.cpp,*.go,Makefile,*.mk,*.sh,*.pl,*.pm,*.py exec ":call SetTitle()"
+"autocmd BufNewFile *.[ch],*.hpp,*.cpp,*.go,Makefile,*.mk,*.sh,*.pl,*.pm,*.py exec ":call SetTitle()"
+"autocmd BufNewFile *.[ch],*.hpp,*.cpp,Makefile,*.mk,*.sh,*.pl,*.pm,*.py exec ":call SetTitle()"
 
 "linter-ale http://www.skywind.me/blog/archives/2084
 let g:ale_linters_explicit = 1
@@ -384,13 +407,16 @@ let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
 let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
 
+"rainbow
+let g:rainbow_active=1
+
 " 加入注释
 func SetComment()
     call setline(1,"/*================================================================")
     call append(line("."),   "*   Copyright (C) ".strftime("%Y").". All rights reserved.")
     call append(line(".")+1, "*   ")
     call append(line(".")+2, "*   file : ".expand("%:t"))
-    call append(line(".")+3, "*   coder: zemanzeng")
+    call append(line(".")+3, "*   coder: zengwei.95")
     call append(line(".")+4, "*   date : ".strftime("%Y-%m-%d %H:%M:%S"))
     call append(line(".")+5, "*   desc : ")
     call append(line(".")+6, "*")
@@ -405,7 +431,7 @@ func SetComment_sh()
     call setline(4, "#   Copyright (C) ".strftime("%Y").". All rights reserved.")
     call setline(5, "#   ")
     call setline(6, "#   file : ".expand("%:t"))
-    call setline(7, "#   coder: zemanzeng")
+    call setline(7, "#   coder: zengwei.95")
     call setline(8, "#   time : ".strftime("%Y-%m-%d %H:%M:%S"))
     call setline(9, "#   desc : ")
     call setline(10, "#")
@@ -465,4 +491,3 @@ func SetTitle()
         endif
     endif
 endfunc
-

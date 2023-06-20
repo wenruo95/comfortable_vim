@@ -320,7 +320,7 @@ let g:ycm_warning_symbol='>*'
 " 不查询ultisnips提供的代码模板补全，如果需要，设置成1即可
 let g:ycm_use_ultisnips_completer=0
 
-let g:ycm_server_python_interpreter='/usr/local/bin/python3'
+let g:ycm_server_python_interpreter='/usr/bin/python3'
 "let g:ycm_add_preview_to_completeopt = 1
 " 是否显示语法检测警告
 let g:ycm_show_diagnostics_ui = 1 
@@ -359,9 +359,16 @@ let g:ycm_language_server =
   \ ]
 " 大文件处理
 let g:ycm_disable_for_files_larger_than_kb=409600
-map <F2> :YcmCompleter GoToDefinition<CR>
-map <F3> :YcmCompleter GoToDeclaration<CR>
-map <F4> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" function
+map <F2> :YcmCompleter GoTo<CR>
+map <F3> :YcmCompleter GoToReferences<CR>
+map <F4> :YcmCompleter GoToInclude<CR>
+nmap <F5> :Git blame<CR>
+nmap <F6> <C-x><C-o>
+map <F8> :TagbarToggle<CR>
+map <F9> :GoDef<CR>
+map <F10> :GoReferrers<CR>
 
 " vim-go
 let g:go_version_warning = 0
@@ -372,21 +379,16 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-map <F9> :GoDef<CR>
-map <F10> :GoReferrers<CR>
 
 " python
 let g:python_host_prog = "/usr/bin/python3"
 
 " vim-fugitive
-nmap <F5> :Git blame<CR>
 
 " gocode
-nmap <F6> <C-x><C-o>
 let g:gocode_autobuild = 1
 
 " tagbar
-map <F8> :TagbarToggle<CR>
 "map <F3> :call SetTitle()<CR>
 
 " comment

@@ -35,7 +35,15 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'dense-analysis/ale'
 Plugin 'yggdroot/leaderf'
 
-" 配色方案
+"php
+Plugin 'stanangeloff/php.vim'
+"Plugin 'lvht/phpcd.vim'
+
+"python
+Plugin 'nvie/vim-flake8'
+Plugin 'kien/ctrlp.vim'
+
+"配色方案
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'morhetz/gruvbox'
 Plugin 'KeitaNakamura/neodark.vim'
@@ -43,6 +51,7 @@ Plugin 'crusoexia/vim-monokai'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'rakr/vim-one'
 Plugin 'mhartington/oceanic-next'
+Plugin 'jnurmine/Zenburn'
 
 " 其他插件
 Plugin 'aklt/plantuml-syntax'
@@ -63,6 +72,9 @@ set fileencodings=utf-8,ucs-bom,chinese
 
 "语言设置
 set langmenu=zh_CN.UTF-8
+
+"不自动缩进和连续注释
+set paste
 
 "C语言自动缩进
 "set smartindent
@@ -123,6 +135,7 @@ set background=dark
 colorscheme gruvbox "默认方案
 "colorscheme papercolor
 "colorscheme solarized
+"colorscheme zenburn
 
 "OceanicNext
 let g:oceanic_next_terminal_bold = 1
@@ -143,7 +156,7 @@ set showmatch
 set nocompatible
 
 "显示空白字符
-"set list
+set list
 "tab设置为4个空格
 set ts=4
 "设置缩进
@@ -163,7 +176,7 @@ set t_Co=256
 set listchars=tab:>-,trail:-,eol:$
 
 "设置一键编译
-map <F7> :make<CR>
+map <F7> :make build<CR>
 
 "设置默认shell
 set shell=bash
@@ -287,7 +300,7 @@ augroup end
 " 寻找全局配置文件
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 " 禁用syntastic来对python检查
-let g:syntastic_ignore_files=[".*\.py$"]
+"let g:syntastic_ignore_files=[".*\.py$"]
 " 使用ctags生成的tags文件
 let g:ycm_collect_identifiers_from_tag_files = 1
 " 开启语义补全
@@ -411,6 +424,9 @@ let g:ale_cpp_cppcheck_options = ''
 
 "rainbow
 let g:rainbow_active=1
+
+"python highlight all
+let python_highlight_all=1
 
 " 加入注释
 func SetComment()
